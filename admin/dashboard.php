@@ -66,6 +66,7 @@ require_once __DIR__ . '/../includes/admin_header.php';
                     <th>Customer</th>
                     <th>Items</th>
                     <th class="num">Total</th>
+                    <th>Payment</th>
                     <th>Placed</th>
                     <th>Status</th>
                 </tr>
@@ -86,6 +87,12 @@ require_once __DIR__ . '/../includes/admin_header.php';
                             <?php endforeach; ?>
                         </td>
                         <td class="num"><?= formatPrice($order['total']) ?></td>
+                        <td>
+                            <?= $order['payment_method'] === 'gcash' ? 'GCash' : 'Cash on Delivery' ?>
+                            <?php if ($order['payment_method'] === 'gcash' && !empty($order['reference_code'])): ?>
+                                <br><small style="color:var(--brown);">Ref: <?= e($order['reference_code']) ?></small>
+                            <?php endif; ?>
+                        </td>
                         <td><?= e(date('M j, Y g:i A', strtotime($order['created_at']))) ?></td>
                         <td>
                             <span class="badge <?= e($badgeClass) ?>"><?= e(ucwords($order['status'])) ?></span>

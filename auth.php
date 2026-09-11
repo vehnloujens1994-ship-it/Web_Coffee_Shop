@@ -106,7 +106,7 @@ require_once __DIR__ . '/includes/header.php';
                 <button type="submit" class="btn btn--dark btn--full">Sign Up</button>
             </form>
         <?php else: ?>
-            <h1 style="font-size:22px;">Welcome Back</h1>
+            <h1 style="font-size:22px;">Welcome</h1>
             <form method="POST" action="?mode=login">
                 <input type="hidden" name="action" value="login">
                 <div class="form-group">

@@ -37,13 +37,47 @@ require_once __DIR__ . '/includes/header.php';
 
     <div class="card">
         <h3>Payment Method</h3>
-        <p style="color: var(--brown); margin-bottom: 20px;">Cash on Delivery (COD) is the only payment method currently available.</p>
 
-        <form method="POST" action="<?= BASE_URL ?>/place_order.php">
+        <?php if (($_GET['error'] ?? '') === 'invalid_reference'): ?>
+            <div class="alert alert--error">Please enter a valid GCash reference code (numbers and dashes only).</div>
+        <?php endif; ?>
+
+        <form method="POST" action="<?= BASE_URL ?>/place_order.php" id="checkoutForm">
             <div class="form-group">
                 <label>Payment Method</label>
-                <input type="text" value="Cash on Delivery" disabled>
+                <div class="payment-options">
+                    <label class="payment-option">
+                        <input type="radio" name="payment_method" value="cod" checked>
+                        Cash on Delivery
+                    </label>
+                    <label class="payment-option">
+                        <input type="radio" name="payment_method" value="gcash">
+                        GCash
+                    </label>
+                </div>
             </div>
+
+            <div id="gcashPanel" class="gcash-panel" hidden>
+                <img
+                    class="gcash-qr"
+                    src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                    alt="GCash payment QR code"
+                    width="200" height="200">
+                <p>Please enter your reference code</p>
+                <div class="form-group">
+                    <label for="reference_code">Reference Code</label>
+                    <input
+                        type="text"
+                        id="reference_code"
+                        name="reference_code"
+                        pattern="[0-9-]+"
+                        inputmode="numeric"
+                        maxlength="50"
+                        placeholder="e.g. 1234-5678-9012"
+                        title="Numbers and dashes only">
+                </div>
+            </div>
+
             <button type="submit" class="btn btn--gold btn--full">Place Order</button>
         </form>
     </div>

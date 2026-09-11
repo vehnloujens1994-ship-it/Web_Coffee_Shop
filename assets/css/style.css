@@ -390,6 +390,30 @@ h1, h2, h3, h4 { margin: 0 0 14px; font-family: var(--font); font-weight: 800; }
 }
 .form-group textarea { resize: vertical; }
 
+/* Checkout: payment method selector + GCash panel */
+.payment-options { display: flex; flex-direction: column; gap: 10px; }
+.payment-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    border: 1px solid rgba(43,29,20,0.25);
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.payment-option input[type="radio"] { width: auto; }
+.gcash-panel {
+    margin: 20px 0;
+    padding: 20px;
+    background: var(--cream-2);
+    border-radius: var(--radius);
+    text-align: center;
+}
+.gcash-qr { margin: 0 auto 16px; border-radius: 8px; }
+.gcash-panel p { font-weight: 700; margin-bottom: 16px; }
+.gcash-panel .form-group { text-align: left; margin-bottom: 0; }
+
 /* Auth tabs */
 .auth-tabs { display: flex; margin-bottom: 28px; border-radius: 999px; background: var(--cream-2); padding: 5px; }
 .auth-tabs a {

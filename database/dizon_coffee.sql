@@ -37,6 +37,8 @@ CREATE TABLE IF NOT EXISTS orders (
     user_id INT NOT NULL,
     status ENUM('pending', 'preparing', 'out for delivery', 'completed', 'cancelled') NOT NULL DEFAULT 'pending',
     total DECIMAL(10,2) NOT NULL,
+    payment_method ENUM('cod', 'gcash') NOT NULL DEFAULT 'cod',
+    reference_code VARCHAR(50) DEFAULT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
