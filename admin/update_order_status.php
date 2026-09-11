@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $orderId = (int) ($_POST['order_id'] ?? 0);
 $status = $_POST['status'] ?? '';
+$view = ($_POST['view'] ?? 'active') === 'completed' ? 'completed' : 'active';
 
 $allowedStatuses = ['pending', 'preparing', 'out for delivery', 'completed', 'cancelled'];
 
@@ -18,4 +19,4 @@ if ($orderId > 0 && in_array($status, $allowedStatuses, true)) {
     $stmt->execute([$status, $orderId]);
 }
 
-redirect('/admin/dashboard.php?updated=1');
+redirect('/admin/dashboard.php?view=' . $view . '&updated=1');

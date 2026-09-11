@@ -9,10 +9,14 @@ $pendingOrders = (int) $pdo->query("SELECT COUNT(*) FROM orders WHERE status = '
 $revenue = (float) $pdo->query("SELECT COALESCE(SUM(total), 0) FROM orders WHERE status != 'cancelled'")->fetchColumn();
 $totalUsers = (int) $pdo->query("SELECT COUNT(*) FROM users WHERE role = 'customer'")->fetchColumn();
 
+$view = ($_GET['view'] ?? 'active') === 'completed' ? 'completed' : 'active';
+$statusFilter = $view === 'completed' ? "= 'completed'" : "!= 'completed'";
+
 $orders = $pdo->query(
     "SELECT o.*, u.name AS customer_name, u.email AS customer_email
      FROM orders o
      JOIN users u ON u.id = o.user_id
+     WHERE o.status $statusFilter
      ORDER BY o.created_at DESC"
 )->fetchAll();
 
@@ -55,9 +59,14 @@ require_once __DIR__ . '/../includes/admin_header.php';
     </div>
 </div>
 
+<div class="tabs">
+    <a href="<?= BASE_URL ?>/admin/dashboard.php?view=active" class="<?= $view === 'active' ? 'active' : '' ?>">Active Orders</a>
+    <a href="<?= BASE_URL ?>/admin/dashboard.php?view=completed" class="<?= $view === 'completed' ? 'active' : '' ?>">Completed</a>
+</div>
+
 <div class="card">
     <?php if (empty($orders)): ?>
-        <div class="empty-state">No orders yet.</div>
+        <div class="empty-state"><?= $view === 'completed' ? 'No completed orders yet.' : 'No active orders right now.' ?></div>
     <?php else: ?>
         <table>
             <thead>
@@ -98,6 +107,7 @@ require_once __DIR__ . '/../includes/admin_header.php';
                             <span class="badge <?= e($badgeClass) ?>"><?= e(ucwords($order['status'])) ?></span>
                             <form method="POST" action="<?= BASE_URL ?>/admin/update_order_status.php" class="status-form" style="margin-top:8px;">
                                 <input type="hidden" name="order_id" value="<?= (int) $order['id'] ?>">
+                                <input type="hidden" name="view" value="<?= e($view) ?>">
                                 <select name="status">
                                     <?php foreach ($statuses as $status): ?>
                                         <option value="<?= e($status) ?>" <?= $status === $order['status'] ? 'selected' : '' ?>>

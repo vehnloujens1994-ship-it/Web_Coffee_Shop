@@ -36,6 +36,28 @@ img { max-width: 100%; display: block; }
 
 a { color: inherit; text-decoration: none; }
 
+/* ---------------------------------------------------------
+   Focus / active states — one consistent treatment for every
+   link and button site-wide, so clicking/tapping never leaves a
+   stray browser-default outline or tap-highlight behind (e.g.
+   the CART button looking "stuck" highlighted after a click).
+   Keyboard users still get a clear, deliberate focus ring via
+   :focus-visible, which only appears for keyboard navigation —
+   never as a leftover from a mouse click or tap.
+   --------------------------------------------------------- */
+a, button, .btn {
+    -webkit-tap-highlight-color: transparent;
+}
+a:focus, button:focus, .btn:focus,
+a:active, button:active, .btn:active {
+    outline: none;
+}
+a:focus-visible, button:focus-visible, .btn:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -426,6 +448,20 @@ h1, h2, h3, h4 { margin: 0 0 14px; font-family: var(--font); font-weight: 800; }
     font-size: 13px;
 }
 .auth-tabs a.active { background: var(--brown-dark); color: var(--cream); }
+
+/* Simple filter tabs (e.g. admin order views) — same pill treatment as
+   auth-tabs but sized to content instead of stretching full width. */
+.tabs { display: inline-flex; margin-bottom: 20px; border-radius: 999px; background: var(--cream-2); padding: 5px; }
+.tabs a {
+    padding: 12px 24px;
+    border-radius: 999px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    color: var(--brown-dark);
+}
+.tabs a.active { background: var(--brown-dark); color: var(--cream); }
 
 /* Tables (cart, orders, admin) */
 table { width: 100%; border-collapse: collapse; }

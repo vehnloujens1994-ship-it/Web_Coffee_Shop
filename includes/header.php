@@ -36,7 +36,7 @@ $bodyClass = $bodyClass ?? '';
                 <a href="<?= BASE_URL ?>/logout.php" class="btn btn--nav">Logout</a>
             <?php elseif (isLoggedIn()): ?>
                 <a href="<?= BASE_URL ?>/my_orders.php">MY ORDERS</a>
-                <a href="<?= BASE_URL ?>/cart.php" class="btn btn--outline-dark btn--small">
+                <a href="<?= BASE_URL ?>/cart.php">
                     CART<?php $c = cartItemCount(); if ($c > 0): ?> (<?= $c ?>)<?php endif; ?>
                 </a>
                 <span class="nav-user"><?= e($_SESSION['name']) ?></span>
