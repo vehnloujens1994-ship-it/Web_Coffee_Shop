@@ -23,8 +23,10 @@ if ($id > 0) {
         redirect('/admin/menu.php?error=in_use');
     }
 
-    if ($item && !empty($item['image'])) {
-        $path = __DIR__ . '/../uploads/menu/' . $item['image'];
+    // Only remove files that were actually uploaded through this form — static
+    // seed photos under assets/img are shared assets, not per-item uploads.
+    if ($item && !empty($item['image']) && strpos($item['image'], 'uploads/') === 0) {
+        $path = __DIR__ . '/../' . $item['image'];
         if (is_file($path)) {
             unlink($path);
         }

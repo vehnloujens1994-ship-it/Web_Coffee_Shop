@@ -25,7 +25,7 @@ require_once __DIR__ . '/includes/header.php';
                 <?php foreach ($menuItems as $item): ?>
                     <div class="menu-card">
                         <?php if (!empty($item['image'])): ?>
-                            <img class="menu-card__image" src="<?= BASE_URL ?>/uploads/menu/<?= e($item['image']) ?>" alt="<?= e($item['name']) ?>">
+                            <img class="menu-card__image" src="<?= BASE_URL ?>/<?= e($item['image']) ?>" alt="<?= e($item['name']) ?>">
                         <?php else: ?>
                             <div class="menu-card__placeholder">&#9749;</div>
                         <?php endif; ?>

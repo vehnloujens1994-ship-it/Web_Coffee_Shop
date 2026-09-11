@@ -58,10 +58,10 @@ CREATE TABLE IF NOT EXISTS order_items (
 -- Seed data: menu items (from the "What We Pour" section of the mockup)
 -- ---------------------------------------------------------------
 INSERT INTO menu_items (name, description, price, category, image) VALUES
-('House Blend', 'Our signature everyday roast. Balanced, smooth, easy to love.', 180.00, 'Coffee', NULL),
-('Single Origin', 'Rotating regional beans, roasted for origin character.', 220.00, 'Coffee', NULL),
-('Cold Brew', 'Slow-steeped for 18 hours. Smooth, naturally sweet.', 150.00, 'Cold Brew', NULL),
-('Coffee Beans', 'Whole beans, freshly roasted. Great for grinding at home.', 260.00, 'Beans', NULL);
+('House Blend', 'Our signature everyday roast. Balanced, smooth, easy to love.', 180.00, 'Coffee', 'assets/img/Menu/House_Blend.jpeg'),
+('Single Origin', 'Rotating regional beans, roasted for origin character.', 220.00, 'Coffee', 'assets/img/Menu/Single_orgin.jpeg'),
+('Cold Brew', 'Slow-steeped for 18 hours. Smooth, naturally sweet.', 150.00, 'Cold Brew', 'assets/img/Menu/Cold_Brew.jpeg'),
+('Coffee Beans', 'Whole beans, freshly roasted. Great for grinding at home.', 260.00, 'Beans', 'assets/img/Menu/Coffee_bean.jpeg');
 
 -- ---------------------------------------------------------------
 -- Seed data: admin account (email must match ADMIN_EMAIL in config/config.php)

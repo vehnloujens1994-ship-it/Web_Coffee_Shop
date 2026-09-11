@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $newName = uniqid('menu_', true) . '.' . $ext;
                 $destination = __DIR__ . '/../uploads/menu/' . $newName;
                 if (move_uploaded_file($_FILES['image']['tmp_name'], $destination)) {
-                    $imageName = $newName;
+                    $imageName = 'uploads/menu/' . $newName;
                 } else {
                     $error = 'Could not save the uploaded image.';
                 }
@@ -96,7 +96,7 @@ require_once __DIR__ . '/../includes/admin_header.php';
         <div class="form-group">
             <label for="image">Image</label>
             <?php if (!empty($item['image'])): ?>
-                <img src="<?= BASE_URL ?>/uploads/menu/<?= e($item['image']) ?>" alt="" style="width:80px; height:80px; object-fit:cover; border-radius:6px; margin-bottom:8px;">
+                <img src="<?= BASE_URL ?>/<?= e($item['image']) ?>" alt="" style="width:80px; height:80px; object-fit:cover; border-radius:6px; margin-bottom:8px;">
             <?php endif; ?>
             <input type="file" id="image" name="image" accept=".jpg,.jpeg,.png,.webp">
         </div>

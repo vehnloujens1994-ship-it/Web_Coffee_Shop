@@ -46,7 +46,7 @@ require_once __DIR__ . '/../includes/admin_header.php';
                     <tr>
                         <td>
                             <?php if (!empty($item['image'])): ?>
-                                <img src="<?= BASE_URL ?>/uploads/menu/<?= e($item['image']) ?>" alt="" style="width:50px; height:50px; object-fit:cover; border-radius:6px;">
+                                <img src="<?= BASE_URL ?>/<?= e($item['image']) ?>" alt="" style="width:50px; height:50px; object-fit:cover; border-radius:6px;">
                             <?php else: ?>
                                 &#9749;
                             <?php endif; ?>
