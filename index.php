@@ -2,8 +2,6 @@
 require_once __DIR__ . '/config/config.php';
 require_once __DIR__ . '/includes/functions.php';
 
-requireLogin();
-
 $stmt = $pdo->query('SELECT * FROM menu_items ORDER BY id ASC LIMIT 4');
 $featuredItems = $stmt->fetchAll();
 

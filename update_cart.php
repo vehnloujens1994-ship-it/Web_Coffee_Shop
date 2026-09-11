@@ -2,7 +2,7 @@
 require_once __DIR__ . '/config/config.php';
 require_once __DIR__ . '/includes/functions.php';
 
-requireLogin();
+requireLogin('/cart.php');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     redirect('/cart.php');

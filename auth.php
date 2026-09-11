@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['name'] = $name;
                 $_SESSION['role'] = $role;
 
-                redirect($role === 'admin' ? '/admin/dashboard.php' : '/menu.php');
+                completeLoginRedirect($pdo, $role);
             }
         }
     } elseif ($action === 'login') {
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['name'] = $user['name'];
             $_SESSION['role'] = $user['role'];
 
-            redirect($user['role'] === 'admin' ? '/admin/dashboard.php' : '/menu.php');
+            completeLoginRedirect($pdo, $user['role']);
         }
     }
 }
